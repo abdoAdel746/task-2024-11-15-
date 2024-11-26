@@ -1,0 +1,17 @@
+﻿<div class="container mt-5">
+    <div class="row justify-content-start">
+        @foreach (var doc in Model)
+        {
+            <div class="col-md-4 d-flex align-items-stretch mb-4">
+                <div class="card shadow w-100">
+                    <img src="~/images/@doc.Img" class="card-img-top" height="100%" alt="@doc.Name">
+                    <div class="card-body text-center">
+                        <h5 class="card-title">@doc.Name</h5>
+                        <p class="card-text">Specialization: @doc.Specialization</p>
+                        <a href="https://localhost:7178/Doctors/CompleteAppointment?doctorId=@doc.Id" class="btn btn-primary">Book Appointment</a>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>

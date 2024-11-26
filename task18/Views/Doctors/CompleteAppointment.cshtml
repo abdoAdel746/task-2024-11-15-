@@ -1,0 +1,85 @@
+﻿<!-- Complete Appointment Form -->
+<div class="container mt-5">
+    <div class="card shadow">
+        <div class="card-body">
+            <h2 class="card-title text-white bg-primary p-3 rounded">Complete Appointment with @Model.Name</h2>
+            <form id="appointmentForm" class="mt-4">
+                <!-- Patient Name -->
+                <div class="form-group">
+                    <label for="patientName">Patient Name:</label>
+                    <input type="text" class="form-control" id="patientName" placeholder="Enter patient name" required>
+                </div>
+
+                <!-- Appointment Date -->
+                <div class="form-group">
+                    <label for="appointmentDate">Appointment Date:</label>
+                    <div class="input-group">
+                        <input type="date" class="form-control" id="appointmentDate" required>
+                        <div class="input-group-append">
+                            <span class="input-group-text">
+                                <i class="bi bi-calendar-date"></i> <!-- Using Bootstrap Icons -->
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Appointment Time -->
+                <div class="form-group">
+                    <label for="appointmentTime">Appointment Time:</label>
+                    <div class="input-group">
+                        <input type="time" class="form-control" id="appointmentTime" required>
+                        <div class="input-group-append">
+                            <span class="input-group-text">
+                                <i class="bi bi-clock"></i> <!-- Using Bootstrap Icons -->
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Reserve Appointment Button -->
+                <button type="button" class="btn btn-primary btn-block" id="reserveAppointmentButton">Reserve Appointment</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- Success Modal -->
+<div class="modal fade" id="successModal" tabindex="-1" role="dialog" aria-labelledby="successModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="successModalLabel">Appointment Confirmed</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                Your appointment has been successfully completed.
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            document.getElementById("reserveAppointmentButton").addEventListener("click", function () {
+                // Validate form fields
+                const patientName = document.getElementById("patientName").value;
+                const appointmentDate = document.getElementById("appointmentDate").value;
+                const appointmentTime = document.getElementById("appointmentTime").value;
+
+                if (patientName && appointmentDate && appointmentTime) {
+                    // All fields are filled, show the success modal
+                    var successModal = new bootstrap.Modal(document.getElementById("successModal"));
+                    successModal.show();
+                } else {
+                    // If any field is empty, alert the user
+                    alert("Please fill out all fields to reserve the appointment.");
+                }
+            });
+        });
+    </script>
+}
